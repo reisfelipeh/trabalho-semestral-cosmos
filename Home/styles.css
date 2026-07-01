@@ -1,0 +1,49 @@
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header {
+    background-color: rgb(241, 243, 116);
+    display: flex;
+    justify-content: center;
+}
+
+.logo {
+    width: 329px;
+    height: 164px;   
+}
+
+a {
+    margin-top: 67px;
+    text-decoration: none;
+}
+
+button {
+    padding: 16px;
+    border: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75px;
+    width: 200px;
+    font-size: 25px;
+    border-radius: 15px;
+    background-color: rgb(83, 133, 241);
+}
+
+
+.animal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
+    
+}

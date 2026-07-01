@@ -1,0 +1,57 @@
+{
+  "cartas": [
+    { "idCarta": "1", "idAnimal": "1", "tipo": "imagem", "nome": null, "imagem": "" },
+    { "idCarta": "2", "idAnimal": "1", "tipo": "texto", "nome": "Cachorro", "imagem": null },
+
+    { "idCarta": "03", "idAnimal": "02", "tipo": "imagem", "nome": null, "imagem": "" },
+    { "idCarta": "04", "idAnimal": "02", "tipo": "texto", "nome": "Gato", "imagem": null },
+
+    { "idCarta": "05", "idAnimal": "03", "tipo": "imagem", "nome": null, "imagem": "" },
+    { "idCarta": "06", "idAnimal": "03", "tipo": "texto", "nome": "Leão", "imagem": null },
+
+    { "idCarta": "07", "idAnimal": "04", "tipo": "imagem", "nome": null, "imagem": "" },
+    { "idCarta": "08", "idAnimal": "04", "tipo": "texto", "nome": "Tigre", "imagem": null },
+
+    { "idCarta": "09", "idAnimal": "05", "tipo": "imagem", "nome": null, "imagem": "" },
+    { "idCarta": "10", "idAnimal": "05", "tipo": "texto", "nome": "Elefante", "imagem": null },
+
+    { "idCarta": "11", "idAnimal": "06", "tipo": "imagem", "nome": null, "imagem": "" },
+    { "idCarta": "12", "idAnimal": "06", "tipo": "texto", "nome": "Girafa", "imagem": null },
+
+    { "idCarta": "13", "idAnimal": "07", "tipo": "imagem", "nome": null, "imagem": "" },
+    { "idCarta": "14", "idAnimal": "07", "tipo": "texto", "nome": "Zebra", "imagem": null },
+
+    { "idCarta": "15", "idAnimal": "08", "tipo": "imagem", "nome": null, "imagem": "" },
+    { "idCarta": "16", "idAnimal": "08", "tipo": "texto", "nome": "Macaco", "imagem": null },
+
+    { "idCarta": "17", "idAnimal": "09", "tipo": "imagem", "nome": null, "imagem": "" },
+    { "idCarta": "18", "idAnimal": "09", "tipo": "texto", "nome": "Urso", "imagem": null },
+
+    { "idCarta": "19", "idAnimal": "10", "tipo": "imagem", "nome": null, "imagem": "" },
+    { "idCarta": "20", "idAnimal": "10", "tipo": "texto", "nome": "Panda", "imagem": null },
+
+    { "idCarta": "21", "idAnimal": "11", "tipo": "imagem", "nome": null, "imagem": "" },
+    { "idCarta": "22", "idAnimal": "11", "tipo": "texto", "nome": "Coelho", "imagem": null },
+
+    { "idCarta": "23", "idAnimal": "12", "tipo": "imagem", "nome": null, "imagem": "" },
+    { "idCarta": "24", "idAnimal": "12", "tipo": "texto", "nome": "Vaca", "imagem": null },
+
+    { "idCarta": "25", "idAnimal": "13", "tipo": "imagem", "nome": null, "imagem": "" },
+    { "idCarta": "26", "idAnimal": "13", "tipo": "texto", "nome": "Cavalo", "imagem": null },
+
+    { "idCarta": "27", "idAnimal": "14", "tipo": "imagem", "nome": null, "imagem": "" },
+    { "idCarta": "28", "idAnimal": "14", "tipo": "texto", "nome": "Porco", "imagem": null },
+
+    { "idCarta": "29", "idAnimal": "15", "tipo": "imagem", "nome": null, "imagem": "" },
+    { "idCarta": "30", "idAnimal": "15", "tipo": "texto", "nome": "Galinha", "imagem": null },
+
+    { "idCarta": "31", "idAnimal": "16", "tipo": "imagem", "nome": null, "imagem": "" },
+    { "idCarta": "32", "idAnimal": "16", "tipo": "texto", "nome": "Pato", "imagem": null },
+
+    { "idCarta": "33", "idAnimal": "17", "tipo": "imagem", "nome": null, "imagem": "" },
+    { "idCarta": "34", "idAnimal": "17", "tipo": "texto", "nome": "Ovelha", "imagem": null },
+
+    { "idCarta": "35", "idAnimal": "18", "tipo": "imagem", "nome": null, "imagem": "" },
+    { "idCarta": "36", "idAnimal": "18", "tipo": "texto", "nome": "Pinguim", "imagem": null }
+  ]
+}

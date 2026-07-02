@@ -1,0 +1,42 @@
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+
+header {
+    background-color: #FFC72C;
+    display: flex;
+    justify-content: center;
+}
+
+.logo {
+    width: 329px;
+    height: 164px; 
+}
+
+#card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.card {
+    width: 125px;
+    height: 150px;
+    background-color: white;
+    border: black 2px solid;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card img {
+    width: 100px;
+    height:150px;
+}

@@ -1,34 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+
 * {
     padding: 0;
     margin: 0;
     border: 0;
     box-sizing: border-box;
 }
+
+html {
+    height: 1vh;
+    background-color: rgb(248, 238, 182);
+    overflow: hidden;
+}
 main {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: rgb(248, 238, 182);
 }
 
 header {
-    background-color: rgb(241, 243, 116);
+    background-color: #FFC72C;
     display: flex;
     justify-content: center;
 }
 
 .logo {
-    width: 329px;
-    height: 164px;   
+    width: 300px;
+    height: 145px; 
 }
 
 a {
-    margin-top: 67px;
+    margin: 20px;
     text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 button {
-    padding: 16px;
-    border: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,11 +51,22 @@ button {
     background-color: rgb(83, 133, 241);
 }
 
+.entrar{
+    width: 253px;
+}
 
 .animal {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;    
-    
+    width: 253px;
+    height: 253px;
+}
+
+p {
+    font-family: Fredoka;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
 }

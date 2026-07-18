@@ -60,3 +60,39 @@ function verificarPar(cartaA, cartaB) {
 (é bom estuda por IA pois vc pode fazer ela explicar do jeito que vc quiser))*/
 
 //SE QUISER, PODE IR FAZENDO A PARTE DA ESTILIZAÇÃO DAS CARTAS (O BAGULHO DE FAZER VIRAR BONITINHO)
+
+//cria o card
+const cardContainer = document.querySelector('.cardContainer');
+
+const createElement = (tag, className) => {
+  const element = document.createElement(tag);
+  element.className = className;
+  return element;
+}
+
+
+const createCard = () =>{
+  
+  const card = createElement('div', 'card');
+  const front = createElement('div', 'face front');
+  const back = createElement('div', 'face back');
+
+  card.appendChild(front);
+  card.appendChild(back);
+  cardContainer.appendChild(card);
+
+  card.addEventListener('click', revealCard);
+
+  return card;
+}
+
+
+//adiciona o revealcard no card
+const revealCard = (event) => {
+    event.currentTarget.classList.add("revealCard");
+}
+
+/* o card que ta sendo criado já está com uma imagem fixa e não buscando as informações do json, portanto tem que fazer ele buscar as
+informaçoes do json para pegar a imagem correta e o texto correto esse card que eu criei foi somente para testar se estava virando corretamente */
+
+ createCard()

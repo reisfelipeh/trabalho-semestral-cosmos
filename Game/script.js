@@ -33,7 +33,28 @@ function embaralhar(array) {
   }
   return copia;
 }
+//Modelo de Nives
+function Nivel(todasAsCartas, niveis) {
+  const config = NIVEIS[niveis];
+  
+  const cartasImagem = todasAsCartas.filter(c => c.tipo === "imagem");
+  const cartasTexto = todasAsCartas.filter(c => c.tipo === "texto");
 
+  const idsUnicos = [...new Set(todasAsCartas.map(c => c.idAnimal))];
+  const idsSelecionados = embaralhar(idsUnicos).slice(0, config.pares);
+
+  const imagensSelecionadas = cartasImagem.filter(c => idsSelecionados.includes(c.idAnimal));
+  const textosSelecionados = cartasTexto.filter(c => idsSelecionados.includes(c.idAnimal));
+
+  const cartasDoNivel = embaralhar([... imagensSelecionadas, ... textosSelecionados]);
+  return { cartasDoNivel, totalPares: config.pares}
+}
+
+//Verificaçao de Par
+function verificarPar(cartaA, cartaB) {
+  if (cartaA.idAnimal === cartaB.idAnimal) return true;
+  else return false 
+}
 /*OBS: Mudei tudo oq o professor fez pois nao lembrava o raciocio usado,
  ent apliquei meus conhecimentos adiquiridos atraves videos e IAs (Não fiz o codigo na IA, porem estudei por ela 
 (é bom estuda por IA pois vc pode fazer ela explicar do jeito que vc quiser))*/

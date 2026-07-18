@@ -1,3 +1,21 @@
+//Variaveis
+const NIVEIS = {
+  1: { pares: 6, label: "Fácil"},
+  2: { pares: 12, label: "Médio"},
+  3: { pares: 18, label: "difícil"}
+};
+
+const estado = {
+  nivelAtual:        1,
+  cartasNoTabuleiro: [],
+  cartasSelecionadas: [],
+  paresEncontrados:  0,
+  totalPares:        0,
+  bloqueado:         false,
+};
+
+let todas_Cartas = [];
+
 //Carregamento JSON 
 async function carregarCartas() {
   const resposta = await fetch("animais.json");
@@ -15,6 +33,7 @@ function embaralhar(array) {
   }
   return copia;
 }
+
 /*OBS: Mudei tudo oq o professor fez pois nao lembrava o raciocio usado,
  ent apliquei meus conhecimentos adiquiridos atraves videos e IAs (Não fiz o codigo na IA, porem estudei por ela 
 (é bom estuda por IA pois vc pode fazer ela explicar do jeito que vc quiser))*/

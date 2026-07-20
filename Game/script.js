@@ -55,6 +55,12 @@ function verificarPar(cartaA, cartaB) {
   if (cartaA.idAnimal === cartaB.idAnimal) return true;
   else return false 
 }
+
+//Placar
+function atualizarPlacar() {
+  const el = document.getElementById("placar");
+  if (el) el.textContent = `Pares: ${estado.paresEncontrados} / ${estado.totalPares}`;
+}
 /*OBS: Mudei tudo oq o professor fez pois nao lembrava o raciocio usado,
  ent apliquei meus conhecimentos adiquiridos atraves videos e IAs (Não fiz o codigo na IA, porem estudei por ela 
 (é bom estuda por IA pois vc pode fazer ela explicar do jeito que vc quiser))*/

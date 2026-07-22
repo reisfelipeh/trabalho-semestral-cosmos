@@ -1,8 +1,8 @@
 //Variaveis
 const NIVEIS = {
-  1: { pares: 6, label: "Fácil"},
-  2: { pares: 12, label: "Médio"},
-  3: { pares: 18, label: "difícil"}
+  1: { pares: 6, label: "Fácil" },
+  2: { pares: 12, label: "Médio" },
+  3: { pares: 18, label: "Difícil" }
 };
 
 const estado = {
@@ -16,10 +16,15 @@ const estado = {
 
 let todas_Cartas = [];
 
-//Carregamento JSON 
+const tabuleiro = document.getElementById("tabuleiro");
+const mensagemVitoria = document.getElementById("mensagemVitoria");
+const btnJogarNovamente = document.getElementById("btnJogarNovamente");
+const botoesNivel = document.querySelectorAll(".btnNivel");
+
+//Carregamento JSON
 async function carregarCartas() {
   const resposta = await fetch("animais.json");
-  if (!resposta.ok) throw new Error(`Erro ${resposta.status} ao carregar cartas.json`);
+  if (!resposta.ok) throw new Error(`Erro ${resposta.status} ao carregar animais.json`);
   const dados = await resposta.json();
   return dados.cartas;
 }
@@ -33,10 +38,11 @@ function embaralhar(array) {
   }
   return copia;
 }
-//Modelo de Nives
-function Nivel(todasAsCartas, niveis) {
-  const config = NIVEIS[niveis];
-  
+
+//Modelo de Niveis
+function Nivel(todasAsCartas, nivel) {
+  const config = NIVEIS[nivel];
+
   const cartasImagem = todasAsCartas.filter(c => c.tipo === "imagem");
   const cartasTexto = todasAsCartas.filter(c => c.tipo === "texto");
 
@@ -46,14 +52,13 @@ function Nivel(todasAsCartas, niveis) {
   const imagensSelecionadas = cartasImagem.filter(c => idsSelecionados.includes(c.idAnimal));
   const textosSelecionados = cartasTexto.filter(c => idsSelecionados.includes(c.idAnimal));
 
-  const cartasDoNivel = embaralhar([... imagensSelecionadas, ... textosSelecionados]);
-  return { cartasDoNivel, totalPares: config.pares}
+  const cartasDoNivel = embaralhar([...imagensSelecionadas, ...textosSelecionados]);
+  return { cartasDoNivel, totalPares: config.pares };
 }
 
 //Verificaçao de Par
 function verificarPar(cartaA, cartaB) {
-  if (cartaA.idAnimal === cartaB.idAnimal) return true;
-  else return false 
+  return cartaA.dataset.idanimal === cartaB.dataset.idanimal;
 }
 
 //Placar
@@ -61,44 +66,111 @@ function atualizarPlacar() {
   const el = document.getElementById("placar");
   if (el) el.textContent = `Pares: ${estado.paresEncontrados} / ${estado.totalPares}`;
 }
-/*OBS: Mudei tudo oq o professor fez pois nao lembrava o raciocio usado,
- ent apliquei meus conhecimentos adiquiridos atraves videos e IAs (Não fiz o codigo na IA, porem estudei por ela 
-(é bom estuda por IA pois vc pode fazer ela explicar do jeito que vc quiser))*/
 
-//SE QUISER, PODE IR FAZENDO A PARTE DA ESTILIZAÇÃO DAS CARTAS (O BAGULHO DE FAZER VIRAR BONITINHO)
-
-//cria o card
-const cardContainer = document.querySelector('.cardContainer');
-
+//Cria o elemento de carta a partir dos dados vindos do JSON
 const createElement = (tag, className) => {
   const element = document.createElement(tag);
   element.className = className;
   return element;
-}
+};
 
+const createCard = (carta) => {
+  const card = createElement("div", "card");
+  const front = createElement("div", "face front");
+  const back = createElement("div", "face back");
 
-const createCard = () =>{
-  
-  const card = createElement('div', 'card');
-  const front = createElement('div', 'face front');
-  const back = createElement('div', 'face back');
+  card.dataset.idanimal = carta.idAnimal;
+  card.dataset.idcarta = carta.idCarta;
+
+  if (carta.tipo === "imagem") {
+    back.style.backgroundImage = `url(${carta.imagem})`;
+  } else {
+    back.classList.add("textoCarta");
+    back.textContent = carta.nome;
+  }
 
   card.appendChild(front);
   card.appendChild(back);
-  cardContainer.appendChild(card);
+  tabuleiro.appendChild(card);
 
-  card.addEventListener('click', revealCard);
+  card.addEventListener("click", () => selecionarCarta(card));
 
   return card;
+};
+
+//Logica de seleçao e verificaçao de par
+function selecionarCarta(card) {
+  if (estado.bloqueado) return;
+  if (card.classList.contains("revealCard")) return;
+  if (card.classList.contains("encontrada")) return;
+  if (estado.cartasSelecionadas.includes(card)) return;
+
+  card.classList.add("revealCard");
+  estado.cartasSelecionadas.push(card);
+
+  if (estado.cartasSelecionadas.length === 2) {
+    estado.bloqueado = true;
+    const [cartaA, cartaB] = estado.cartasSelecionadas;
+
+    if (verificarPar(cartaA, cartaB)) {
+      cartaA.classList.add("encontrada");
+      cartaB.classList.add("encontrada");
+      estado.paresEncontrados++;
+      atualizarPlacar();
+      estado.cartasSelecionadas = [];
+      estado.bloqueado = false;
+
+      if (estado.paresEncontrados === estado.totalPares) {
+        mostrarVitoria();
+      }
+    } else {
+      setTimeout(() => {
+        cartaA.classList.remove("revealCard");
+        cartaB.classList.remove("revealCard");
+        estado.cartasSelecionadas = [];
+        estado.bloqueado = false;
+      }, 900);
+    }
+  }
 }
 
-
-//adiciona o revealcard no card
-const revealCard = (event) => {
-    event.currentTarget.classList.add("revealCard");
+function mostrarVitoria() {
+  mensagemVitoria.classList.remove("escondido");
 }
 
-/* o card que ta sendo criado já está com uma imagem fixa e não buscando as informações do json, portanto tem que fazer ele buscar as
-informaçoes do json para pegar a imagem correta e o texto correto esse card que eu criei foi somente para testar se estava virando corretamente */
+//Inicia (ou reinicia) o jogo com o nivel escolhido
+function iniciarJogo(nivel) {
+  estado.nivelAtual = nivel;
+  estado.cartasSelecionadas = [];
+  estado.paresEncontrados = 0;
+  estado.bloqueado = false;
 
- createCard()
+  tabuleiro.innerHTML = "";
+  mensagemVitoria.classList.add("escondido");
+
+  const { cartasDoNivel, totalPares } = Nivel(todas_Cartas, nivel);
+  estado.cartasNoTabuleiro = cartasDoNivel;
+  estado.totalPares = totalPares;
+
+  cartasDoNivel.forEach(createCard);
+  atualizarPlacar();
+
+  botoesNivel.forEach(btn => {
+    btn.classList.toggle("ativo", Number(btn.dataset.nivel) === nivel);
+  });
+}
+
+//Eventos dos botões de nível e "jogar novamente"
+botoesNivel.forEach(btn => {
+  btn.addEventListener("click", () => iniciarJogo(Number(btn.dataset.nivel)));
+});
+
+btnJogarNovamente.addEventListener("click", () => iniciarJogo(estado.nivelAtual));
+
+//Inicializaçao
+async function iniciar() {
+  todas_Cartas = await carregarCartas();
+  iniciarJogo(estado.nivelAtual);
+}
+
+iniciar();

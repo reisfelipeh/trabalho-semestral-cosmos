@@ -7,18 +7,22 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header >
-        <a href="../Home/index.html"><img class="logo"src="../img/Logo.png" alt=""></a>
+    <header>
+        <a href="../Home/index.html"><img class="logo" src="../img/Logo.png" alt="Voltar para o início"></a>
     </header>
-    <main id="card-container">
-    </main>
-    <div id="placar"></div>
-    <div class="cardContainer">
-      <!--  <div class="card">
-            <div class="face front"></div>
-            <div class="face back"></div>
+    <main>
+        <div id="niveis">
+            <button class="btnNivel" data-nivel="1">Fácil</button>
+            <button class="btnNivel" data-nivel="2">Médio</button>
+            <button class="btnNivel" data-nivel="3">Difícil</button>
         </div>
-    </div> -->
+        <div id="placar"></div>
+        <div id="tabuleiro"></div>
+        <div id="mensagemVitoria" class="escondido">
+            <p>Parabéns! Você encontrou todos os pares!</p>
+            <button id="btnJogarNovamente">Jogar novamente</button>
+        </div>
+    </main>
     <script src="script.js"></script>
 </body>
 </html>

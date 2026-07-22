@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 * {
     padding: 0;
     margin: 0;
@@ -25,17 +27,77 @@ a{
     height: 145px;
 }
 
-#cardContainer {
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+#niveis {
+    display: flex;
+    gap: 10px;
+}
+
+.btnNivel {
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: #FFC72C;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 150ms ease;
+}
+
+.btnNivel:hover {
+    transform: scale(1.05);
+}
+
+.btnNivel.ativo {
+    background-color: #ff9800;
+    color: white;
+}
+
+#placar {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+#tabuleiro {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;
+    max-width: 1200px;
+}
+
+#mensagemVitoria {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    font-family: Fredoka;
+}
+
+#mensagemVitoria button {
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: #FFC72C;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: Fredoka; 
+}
+
+.escondido {
+    display: none !important;
 }
 
 .card {
-    width: 125px;
-    height: 150px;
+    width: 188px;
+    height: 225px;
     background-color: white;
     border: black 2px solid;
     border-radius: 15px;
@@ -56,21 +118,38 @@ a{
     height:100%;
     position:absolute;
     backface-visibility:hidden;
-
 }
 
 .front{
-    background-color: red;
+    background-image: url(../img/Fundo.png);
     border-radius: 13px;
 }
 
 .back{
-    background-image: url(../img/Cachorro.png);
     border-radius: 15px;
     backface-visibility: hidden;
     transform: rotateY(180deg);
+    background-color: #fadc89;
+    
+}
+
+.back.textoCarta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8px;
+    font-weight: 600;
+    font-size: x-large;
+    font-family: Fredoka;
+    
 }
 
 .revealCard{
     transform: rotateY(180deg);
+}
+
+.card.encontrada {
+    pointer-events: none;
+    border-color: #ff9800;
 }

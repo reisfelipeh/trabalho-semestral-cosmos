@@ -63,8 +63,8 @@ function verificarPar(cartaA, cartaB) {
 
 //Placar
 function atualizarPlacar() {
-  const el = document.getElementById("placar");
-  if (el) el.textContent = `Pares: ${estado.paresEncontrados} / ${estado.totalPares}`;
+  const pontuacao = document.getElementById("placar");
+  if (pontuacao) pontuacao.textContent = `Pares: ${estado.paresEncontrados} / ${estado.totalPares}`;
 }
 
 //Cria o elemento de carta a partir dos dados vindos do JSON
@@ -129,7 +129,7 @@ function selecionarCarta(card) {
         cartaB.classList.remove("revealCard");
         estado.cartasSelecionadas = [];
         estado.bloqueado = false;
-      }, 900);
+      }, 1200);
     }
   }
 }

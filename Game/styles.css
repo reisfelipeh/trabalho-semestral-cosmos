@@ -63,6 +63,10 @@ main {
     font-weight: bold;
 }
 
+#tentativas {
+    font-family: Fredoka;
+    font-size: medium;
+}
 #tabuleiro {
     display: flex;
     justify-content: center;

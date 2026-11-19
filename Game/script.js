@@ -14,7 +14,13 @@ const estado = {
   bloqueado:         false,
 };
 
+var tentativas = 0;
+
+let tempo = 0;
+let cronometro = null;
+
 let todas_Cartas = [];
+
 
 const tabuleiro = document.getElementById("tabuleiro");
 const mensagemVitoria = document.getElementById("mensagemVitoria");
@@ -63,8 +69,16 @@ function verificarPar(cartaA, cartaB) {
 
 //Placar
 function atualizarPlacar() {
-  const pontuacao = document.getElementById("placar");
-  if (pontuacao) pontuacao.textContent = `Pares: ${estado.paresEncontrados} / ${estado.totalPares}`;
+    const pontuacao = document.getElementById("placar");
+    const tentativasHTML = document.getElementById("tentativas");
+
+    if (pontuacao) {
+        pontuacao.textContent = `Pares: ${estado.paresEncontrados} / ${estado.totalPares}`;
+    }
+
+    if (tentativasHTML) {
+        tentativasHTML.textContent = `Tentativas: ${tentativas}`;
+    }
 }
 
 //Cria o elemento de carta a partir dos dados vindos do JSON
@@ -111,6 +125,10 @@ function selecionarCarta(card) {
   if (estado.cartasSelecionadas.length === 2) {
     estado.bloqueado = true;
     const [cartaA, cartaB] = estado.cartasSelecionadas;
+    tentativas += 1;
+    atualizarPlacar();
+
+
 
     if (verificarPar(cartaA, cartaB)) {
       cartaA.classList.add("encontrada");
@@ -136,6 +154,7 @@ function selecionarCarta(card) {
 
 function mostrarVitoria() {
   mensagemVitoria.classList.remove("escondido");
+  clearInterval(cronometro);
 }
 
 //Inicia (ou reinicia) o jogo com o nivel escolhido
@@ -144,6 +163,8 @@ function iniciarJogo(nivel) {
   estado.cartasSelecionadas = [];
   estado.paresEncontrados = 0;
   estado.bloqueado = false;
+  tentativas = 0;
+  iniciarCronometro();
 
   tabuleiro.innerHTML = "";
   mensagemVitoria.classList.add("escondido");
@@ -171,6 +192,23 @@ btnJogarNovamente.addEventListener("click", () => iniciarJogo(estado.nivelAtual)
 async function iniciar() {
   todas_Cartas = await carregarCartas();
   iniciarJogo(estado.nivelAtual);
+}
+//Tempo
+function iniciarCronometro() {
+    clearInterval(cronometro);
+
+    tempo = 0;
+
+    cronometro = setInterval(() => {
+        tempo++;
+
+        let minutos = Math.floor(tempo / 60);
+        let segundos = tempo % 60;
+
+        document.getElementById("tempo").textContent =
+            `Tempo: ${String(minutos).padStart(2, '0')}:${String(segundos).padStart(2, '0')}`;
+
+    }, 1000);
 }
 
 iniciar();

@@ -22,15 +22,43 @@ main {
 }
 
 header {
-    background-color: #FFC72C;
+    background-color: #ffc629;
+    height: 140px;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    position: relative;
+}
+
+.login {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-decoration: none;
+}
+
+.login button {
+    background-color: white;
+    border: none;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+svg{
+    height: 70px;
 }
 
 .logo {
     width: 300px;
-    height: 145px; 
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
+
 
 a {
     margin: 20px;
